@@ -66,7 +66,7 @@ const restsFunc = ()=> {
          image: 'card3.jpg'
       },
       {
-         id: 2,
+         id: 3,
          title: "Жадина-пицца",
          time: 50, 
          rating: 2.0,
@@ -75,7 +75,7 @@ const restsFunc = ()=> {
          image: 'card4.jpg'
       },
       {
-         id: 2,
+         id: 4,
          title: "Точка еды",
          time: 30, 
          rating: 1.0,
@@ -84,7 +84,7 @@ const restsFunc = ()=> {
          image: 'card5.jpg'
       },
       {
-         id: 2,
+         id: 5,
          title: "PizzaBurger",
          time: 50, 
          rating: 6.0,
@@ -101,7 +101,7 @@ const restsFunc = ()=> {
    }
 
 
-   const rendersRestaraunts = (array)=>{
+   const rendersRestaraunts = (array) => {
       container.innerHTML = '';
 
       array.forEach((card) => {
@@ -141,14 +141,118 @@ const restsFunc = ()=> {
       }, 1000);
    }
 
-  
+};
+
+
+// -----------------------
+const goodsFunc = (idRestaurant) => {
+
+   const containerGoods = document.querySelector('.products-wrapper');
+   const goodsArray = [
+      {
+         id: 0,
+         title: "Ролл угорь стандарт",
+         description: "Рис, угорь, соус унаги, кунжут, водоросли нори.",
+         image: 'produstc11.jpg', 
+         price: 250
+      }, 
+      {
+         id: 1,
+         title: "Калифорния лосось стандарт",
+         description: "Рис, лосось, авокадо, огурец, майонез, икра масаго, водоросли нори.",
+         image: 'products12.jpg', 
+         price: 395
+      },
+      {
+         id: 2,
+         title: "Окинава стандарт",
+         description: " Рис, креветка отварная, сыр сливочный, лосось, огурец свежий...",
+         image: 'products13.jpg', 
+         price: 250
+      },
+      {
+         id: 3,
+         title: "Цезарь маки хl",
+         description: "Рис, куриная грудка копченая, икра масаго, томат, айсберг, соус цезарь...",
+         image: 'products14.jpg', 
+         price: 230
+      },
+      {
+         id: 4,
+         title: "Ясай маки стандарт 185 г",
+         description: "Рис, помидор свежий, перец болгарский, авокадо, огурец, айсберг",
+         image: 'products15.jpg', 
+         price: 150
+      },
+      {
+         id: 5,
+         title: "Ролл с креветкой стандарт",
+         description: "Рис, водоросли нори, креветки отварные, сыр сливочный, огурцы",
+         image: 'products16.jpg', 
+         price: 100
+      }
+   ];
+
+
+   const loading = () => {
+      containerGoods.innerHTML = '';
+   }
 
    
-   
-   
+
+   const rendersGoods = (goodsArray, idRestaurant) => {
+      containerGoods.innerHTML = '';
+
+      goodsArray.forEach((goodsCard) => {
+         containerGoods.insertAdjacentHTML('beforeend', `
+            <div class="products-card">
+               <div class="products-card__image">
+                  <img src="./img/goods/${goodsCard.image}" alt="${goodsCard.image}">
+               </div>
+
+               <div class="products-card__description">
+                  <div class="products-card__description-row">
+                     <h5 class="products-card__description--name">${goodsCard.title} </h5>
+                  </div>
+
+                  <div class="products-card__description-row">
+                     <p class="products-card__description--text">${goodsCard.description}</p>
+                  </div>
+
+                  <div class="products-card__description-row">
+                     <div class="products-card__description-controls">
+                        <button class="btn btn-primary">
+                           В корзину
+                           <img src="./img/icons/shopping-cart-goods.svg" alt="В Корзину">
+                        </button>
+                        <span class="products-card__description-controls--price"> ${goodsCard.price} ₽ </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         `);
+      });
+   }
+
+
+   if(containerGoods){
+      loading();
+
+      setTimeout(() => {
+         rendersGoods(goodsArray);
+      }, 1000);
+   }
 
 };
 
 
+
+
 modalFunc();
 restsFunc();
+const params = new URLSearchParams(location.search);  
+
+const idRestaurant = params.get('id');  // выдаст значение query параметра id из урла  http://127.0.0.1:5500/goods.html?id=0
+if(idRestaurant){
+   goodsFunc(idRestaurant);
+}

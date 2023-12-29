@@ -258,4 +258,4 @@ if(idRestaurant){
 }
 
 
-// https://vuejs.org/guide/quick-start.html, поставили командой npm create vue@latest. Либо если будет ошибка то npm install -g @vue/cli   (https://v3.ru.vuejs.org/ru/guide/installation.html#cli)
+// Перенесли проект на vue: https://vuejs.org/guide/quick-start.html, поставили командой npm create vue@latest. Либо если будет ошибка то npm install -g @vue/cli   (https://v3.ru.vuejs.org/ru/guide/installation.html#cli)
